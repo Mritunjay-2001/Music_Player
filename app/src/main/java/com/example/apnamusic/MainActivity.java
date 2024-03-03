@@ -41,9 +41,9 @@ public class MainActivity extends AppCompatActivity {
 
 //                        Toast.makeText(MainActivity.this, "Runtime permission given", Toast.LENGTH_SHORT).show();
                         ArrayList<File> mySongs = fetchSongs(Environment.getExternalStorageDirectory());
-                        String [] items = new String[mySongs.size()];
-                        for(int i =0; i<mySongs.size(); i++){
-                            items[i] = mySongs.get(i).getName().replace("mp3","");
+                        String[] items = new String[mySongs.size()];
+                        for (int i = 0; i < mySongs.size(); i++) {
+                            items[i] = mySongs.get(i).getName().replace("mp3", "");
                         }
                         ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, items);
                         listView.setAdapter(adapter);
@@ -75,21 +75,20 @@ public class MainActivity extends AppCompatActivity {
                 .check();
     }
 
-    public ArrayList<File> fetchSongs(File file){
+    public ArrayList<File> fetchSongs(File file) {
         ArrayList arrayList = new ArrayList();
-        File [] songs = file.listFiles();
-        if(songs !=null){
-            for(File myFile: songs){
-                if(!myFile.isHidden() && myFile.isDirectory()){
+        File[] songs = file.listFiles();
+        if (songs != null) {
+            for (File myFile : songs) {
+                if (!myFile.isHidden() && myFile.isDirectory()) {
                     arrayList.addAll(fetchSongs(myFile));
-                }
-                else{
-                    if(myFile.getName().endsWith(".mp3") &&!myFile.getName().startsWith(".")){
+                } else {
+                    if (myFile.getName().endsWith(".mp3") && !myFile.getName().startsWith(".")) {
                         arrayList.add(myFile);
                     }
                 }
             }
         }
-        return  arrayList;
+        return arrayList;
     }
-}gffghhgfhfhghghn
+}
